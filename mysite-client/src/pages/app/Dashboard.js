@@ -14,7 +14,6 @@ import { Button } from "react-bootstrap";
 import Navbar from '../../../src/components/NavBar/Navbar'
 
 const Dashboard = () => {
-    const [userEmail, setUserEmail] = useState("");
     const [loading, setLoading] = useState(true);
     const [news, setNews] = useState("");
     const [article, setArticle] = useState(false);
@@ -35,7 +34,6 @@ const Dashboard = () => {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    setUserEmail(data.email);
                     setLoading(false);
                 });
         }
@@ -46,7 +44,7 @@ const Dashboard = () => {
         console.log("Clicked!");
         
         
-        fetch("http://127.0.0.1:8000/news_api/view", {
+        fetch("http://127.0.0.1:8000/news_api/hot", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

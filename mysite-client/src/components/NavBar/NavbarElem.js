@@ -47,6 +47,33 @@ export const NavLogo = styled(LinkR)`
      }
 `;
 
+export const NavMenu = styled.ul  `
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+    margin-right: -22px;
+    padding-top: 20px;
+
+    @media screen and (max-width: 760px) {
+        display: none;
+    }
+`;
+
+export const NavItem = styled.li `
+    height: 80px;
+`;
+
+export const NavLinks = styled(LinkR) `
+    color: #000;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+    cursor: pointer;
+`;
+
 export const NavBtn = styled.nav `
     display: flex;
     align-items: center;

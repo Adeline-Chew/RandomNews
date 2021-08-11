@@ -35,10 +35,28 @@ API_KEYS = 'pub_800315c16ffc973af8753eaf7f417575be2'
 #     return Response(serializers.data)
 
 
-@api_view(['POST', 'GET'])
-def LoadArticles(request):
+@api_view(['GET'])
+def LoadHotArticles(request):
     rand_page = randrange(50)
     url = f'https://newsdata.io/api/1/news?apikey={API_KEYS}&language=en&page={rand_page}'
+    return LoadArticles(url)
+
+
+@api_view(['GET'])
+def LoadTechArticles(request):
+    rand_page = randrange(50)
+    url = f'https://newsdata.io/api/1/news?apikey={API_KEYS}&language=en&page={rand_page}&category=technology'
+    return LoadArticles(url)
+
+
+@api_view(['GET'])
+def LoadEntertainmentArticles(request):
+    rand_page = randrange(50)
+    url = f'https://newsdata.io/api/1/news?apikey={API_KEYS}&language=en&page={rand_page}&category=entertainment'
+    return LoadArticles(url)
+
+
+def LoadArticles(url):
     response = requests.get(url)
     data = response.json()['results']
     i = 0
@@ -55,4 +73,3 @@ def LoadArticles(request):
     articles = News.objects.all()
     serializers = NewsSerializer(articles, many=True)
     return Response(serializers.data)
-

@@ -5,18 +5,18 @@ import {
     NavLogo,
     NavBtn,
     NavBtnLink,
+    NavMenu,
+    NavItem,
+    NavLinks
 } from "./NavbarElem";
 
 const Navbar = () => {
     const [isAuth, setIsAuth] = useState(false);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (localStorage.getItem("token") == null) {
-            window.location.replace("http://localhost:3000/signin");
-        } else {
-            setLoading(false);
-        }
+            window.location.replace("http://localhost:3000/");
+        } 
     }, []);
 
     // Handle user log out
@@ -34,7 +34,7 @@ const Navbar = () => {
             .then((data) => {
                 console.log(data);
                 localStorage.clear();
-                window.location.replace("http://localhost:3000/signin");
+                window.location.replace("http://localhost:3000/");
             });
     };
 
@@ -50,6 +50,34 @@ const Navbar = () => {
             <Nav>
                 <NavbarContainer>
                     <NavLogo>RandomNews</NavLogo>
+                    <NavMenu>
+                            <NavItem>
+                                <NavLinks
+                                    to="/dashboard"
+                                    smooth={true}
+                                    duration={500}
+                                    spy={true}
+                                    exact="true"
+                                    offset={-80} //height of navbar
+                                >
+                                    Hot
+                                </NavLinks>
+                            </NavItem>
+                            <NavItem>
+                                <NavLinks to="/technology" 
+                                    duration={500}
+                                    spy={true}
+                                    exact="true"
+                                    offset={-80}>Technology</NavLinks>
+                            </NavItem>
+                            <NavItem>
+                                <NavLinks to="/entertainment" smooth={true}
+                                    duration={500}
+                                    spy={true}
+                                    exact="true"
+                                    offset={-80}>Entertainment</NavLinks>
+                            </NavItem>
+                        </NavMenu>
                     {/* Insert log out button here */}
                     {isAuth && (
                         <NavBtn>
